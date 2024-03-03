@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grandpa-hamster
+spec:
+  selector:
+    matchLabels:
+      app: grandpa-hamster
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: grandpa-hamster
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534 # nobody
+      containers:
+        - name: grandpa-hamster
+          image: registry.k8s.io/ubuntu-slim:0.1
+          resources:
+            requests:
+              cpu: 100m
+              memory: 50Mi
+          command: ["/bin/sh"]
+          args:
+            - "-c"
+            - "while true; do timeout 0.5s yes >/dev/null; sleep 0.5s; done"
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: papa-hamster
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: hamster
+        spec:
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 65534 # nobody
+          containers:
+            - name: hamster
+              image: registry.k8s.io/ubuntu-slim:0.1
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 50Mi
+              command: ["/bin/sh"]
+              args:
+                - "-c"
+                - "while true; do timeout 0.5s yes >/dev/null; sleep 0.5s; done"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mama-hamster
+spec:
+  selector:
+    app: hamster
+  ports:
+    - protocol: TCP
+      port: 9090
+      targetPort: 9090
