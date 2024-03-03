@@ -40,6 +40,7 @@ spec:
           labels:
             app: hamster
         spec:
+          restartPolicy: OnFailure
           securityContext:
             runAsNonRoot: true
             runAsUser: 65534 # nobody
