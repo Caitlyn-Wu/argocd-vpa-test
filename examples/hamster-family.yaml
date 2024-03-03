@@ -27,7 +27,7 @@ spec:
             - "-c"
             - "while true; do timeout 0.5s yes >/dev/null; sleep 0.5s; done"
 ---
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: papa-hamster
