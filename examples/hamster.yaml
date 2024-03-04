@@ -30,7 +30,7 @@ spec:
           memory: 500Mi
         controlledResources: ["cpu", "memory"]
   updatePolicy:
-    updateMode: off
+    updateMode: "Auto"
 ---
 apiVersion: apps/v1
 kind: Deployment
