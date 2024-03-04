@@ -29,6 +29,8 @@ spec:
           cpu: 800m
           memory: 500Mi
         controlledResources: ["cpu", "memory"]
+  updatePolicy:
+    updateMode: off
 ---
 apiVersion: apps/v1
 kind: Deployment
