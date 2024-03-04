@@ -20,12 +20,12 @@ spec:
           image: registry.k8s.io/ubuntu-slim:0.1
           resources:
             requests:
-              cpu: 100m
-              memory: 50Mi
+              cpu: 500m
+              memory: 500Mi
           command: ["/bin/sh"]
           args:
             - "-c"
-            - "while true; do timeout 0.5s yes >/dev/null; sleep 5s; done"
+            - "while true; do timeout 0.5s yes >/dev/null; sleep 50s; done"
 ---
 apiVersion: batch/v1
 kind: CronJob
