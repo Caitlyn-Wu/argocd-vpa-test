@@ -40,7 +40,7 @@ spec:
   selector:
     matchLabels:
       app: hamster
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
