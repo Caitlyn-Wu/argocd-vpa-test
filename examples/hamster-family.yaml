@@ -54,7 +54,7 @@ spec:
               command: ["/bin/sh"]
               args:
                 - "-c"
-                - "while true; do timeout 0.5s yes >/dev/null; sleep 0.5s; done"
+                - "timeout 60s yes >/dev/null"
 ---
 apiVersion: v1
 kind: Service
